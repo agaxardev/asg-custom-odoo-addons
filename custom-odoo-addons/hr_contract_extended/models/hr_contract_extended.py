@@ -1,3 +1,4 @@
+import datetime
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
@@ -50,6 +51,9 @@ class HrContractExtended(models.Model):
             else:
                 record.porcentaje_dias_faltantes_prueba = 0
 
+        if record.dias_periodo_prueba > 0 and record.dias_faltantes_prueba == 0:
+            record.porcentaje_dias_faltantes_prueba = 100
+
     @api.depends("date_start", "date_end")
     def _compute_dias_vacaciones(self):
         for record in self:
@@ -101,12 +105,13 @@ class HrContractExtended(models.Model):
         for record in self:
             if record.date_start and record.date_end and record.dias_periodo_prueba:
                 today = datetime.today().date()
-                dias_faltantes_prueba = (
-                    today - record.date_start
-                ).days - record.dias_periodo_prueba
-                if dias_faltantes_prueba >= record.dias_periodo_prueba:
+                dias_trabajados = (today - record.date_start).days
+
+                if dias_trabajados >= record.dias_periodo_prueba:
                     record.dias_faltantes_prueba = 0
                 else:
-                    record.dias_faltantes_prueba = max(abs(dias_faltantes_prueba), 0)
+                    record.dias_faltantes_prueba = (
+                        dias_trabajados - record.dias_periodo_prueba
+                    )
             else:
                 record.dias_faltantes_prueba = 0
