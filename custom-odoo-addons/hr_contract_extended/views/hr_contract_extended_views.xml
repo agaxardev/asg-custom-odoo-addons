@@ -1,27 +1,45 @@
 <odoo>
   <data>
-
-    <record model="ir.ui.view" id="view_coworking_list">
+    <record model="ir.ui.view" id="view_hr_contract_list">
       <field name="name">hr.contract.view.tree.inherit</field>
       <field name="model">hr.contract</field>
       <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
       <field name="arch" type="xml">
-          <xpath expr="//tree" position="attributes">
-              <attribute name="default_order">name</attribute>
-          </xpath>
-          <xpath expr="//field[@name='date_end']" position="after">
+        <xpath expr="//tree" position="attributes">
+          <attribute name="default_order">name</attribute>
+      </xpath>
+      <xpath expr="//field[@name='date_end']" position="after">
+          <field name="fecha_fin_prueba" optional="show"/>
+          <field name="dias_vacaciones" optional="show"/>
+          <field name="dias_tomados_vacaciones" optional="show"/>
+          <field name="dias_pendientes_vacaciones" optional="show"/>
+          <field name="contrato_mes_dia" optional="show"/>
+          <field name="dias_periodo_prueba" optional="show"/> 
+          <field name="dias_faltantes_prueba" optional="show"/>              
+          <field name="porcentaje_dias_faltantes_prueba" widget="progressbar" optional="show"/>
+      </xpath> 
+      </field>
+  </record>
+    
+   <!-- Vista de Búsqueda -->
+   <record model="ir.ui.view" id="view_hr_contract_search">
+      <field name="name">hr.contract.view.search</field>
+      <field name="model">hr.contract</field>
+      <field name="arch" type="xml">
+          <search>
+              <field name="name"/>
+              <field name="date_start"/>
+              <field name="date_end"/>
               <field name="fecha_fin_prueba"/>
               <field name="dias_vacaciones"/>
               <field name="dias_tomados_vacaciones"/>
               <field name="dias_pendientes_vacaciones"/>
               <field name="contrato_mes_dia"/>
-              <field name="dias_periodo_prueba"/> 
+              <field name="dias_periodo_prueba"/>
               <field name="dias_faltantes_prueba"/>              
-              <field name="porcentaje_dias_faltantes_prueba" widget="progressbar"/>
-          </xpath> 
+          </search>
       </field>
-  </record> 
-  
+  </record>
   
     <!-- Definición de la vista de form -->
     <record id="hr_contract_extended_views" model="ir.ui.view">

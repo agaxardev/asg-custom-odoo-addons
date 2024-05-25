@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="hr_employee_form_view_ext" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='public']" position="inside">
+                    <!-- Agregar grupo y campos adicionales -->
+                    <group string="Datos Institucionales">
+                        <field name="antiguedad"/>
+                        <field name="activo"/>
+                        <field name="centro_de_costo"/>
+                        <field name="escalafon"/>
+                        <field name="estado_del_contrato"/>
+                        <field name="arl"/>
+                        <field name="eps"/>
+                        <field name="ccf"/>
+                        <field name="fdp"/>
+                        <field name="ingreso_al_helisa"/>
+                        <field name="biometrico"/>
+                    </group>
+                    <group string="Datos Institucionales">    
+                        <field name="pregrado"/>
+                        <field name="postgrado"/>
+                        <field name="maestria"/>
+                        <field name="nivel_de_ingles"/>
+                    </group>
+                </xpath>                
+            </field>
+        </record>
+    </data>
+</odoo>
