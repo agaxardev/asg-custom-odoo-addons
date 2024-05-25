@@ -1,4 +1,3 @@
-# /opt/workspace/asg/custom-odoo-addons/hr_extended/models/hr_extended.py
 from odoo import fields, models
 
 
@@ -20,7 +19,7 @@ class EmployeePublic(models.Model):
     )
 
     # Nuevo campo: Escalafón
-    escalafon = fields.Text(string="Escalafón")
+    escalafon = fields.Char(string="Escalafón")
 
     # Nuevo campo: Estado del Contrato
     estado_del_contrato = fields.Selection(
@@ -29,16 +28,16 @@ class EmployeePublic(models.Model):
     )
 
     # Nuevo campo: ARL
-    arl = fields.Text(string="ARL")
+    arl = fields.Char(string="ARL")
 
     # Nuevo campo: EPS
-    eps = fields.Text(string="EPS")
+    eps = fields.Char(string="EPS")
 
     # Nuevo campo: CCF
-    ccf = fields.Text(string="CCF")
+    ccf = fields.Char(string="CCF")
 
     # Nuevo campo: FDP
-    fdp = fields.Text(string="FDP")
+    fdp = fields.Char(string="FDP")
 
     # Nuevo campo: Ingreso al Helisa
     ingreso_al_helisa = fields.Selection(
@@ -49,13 +48,13 @@ class EmployeePublic(models.Model):
     biometrico = fields.Integer(string="Biométrico")
 
     # Nuevo campo: Pregrado
-    pregrado = fields.Text(string="Pregrado")
+    pregrado = fields.Char(string="Pregrado")
 
     # Nuevo campo: Postgrado
-    postgrado = fields.Text(string="Postgrado")
+    postgrado = fields.Char(string="Postgrado")
 
     # Nuevo campo: Maestría
-    maestria = fields.Text(string="Maestría")
+    maestria = fields.Char(string="Maestría")
 
     # Nuevo campo: Nivel de Inglés
     nivel_de_ingles = fields.Selection(
