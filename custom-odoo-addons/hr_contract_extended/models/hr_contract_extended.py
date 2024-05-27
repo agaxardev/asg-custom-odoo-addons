@@ -40,19 +40,20 @@ class HrContractExtended(models.Model):
         string="% Prueba",
         compute="_compute_porcentaje_dias_faltantes_prueba",
     )
+    dias_trabajados = fields.Integer(
+        string="Días Trabajados", compute="_compute_dias_trabajados", store=True
+    )
 
     @api.depends("dias_faltantes_prueba", "dias_periodo_prueba")
     def _compute_porcentaje_dias_faltantes_prueba(self):
         for record in self:
             if record.dias_periodo_prueba > 0:
                 record.porcentaje_dias_faltantes_prueba = (
-                    record.dias_faltantes_prueba / record.dias_periodo_prueba
-                ) * 100
+                    100
+                    - (record.dias_faltantes_prueba / record.dias_periodo_prueba) * 100
+                )
             else:
                 record.porcentaje_dias_faltantes_prueba = 0
-
-        if record.dias_periodo_prueba > 0 and record.dias_faltantes_prueba == 0:
-            record.porcentaje_dias_faltantes_prueba = 100
 
     @api.depends("date_start", "date_end")
     def _compute_dias_vacaciones(self):
@@ -111,7 +112,16 @@ class HrContractExtended(models.Model):
                     record.dias_faltantes_prueba = 0
                 else:
                     record.dias_faltantes_prueba = (
-                        dias_trabajados - record.dias_periodo_prueba
+                        record.dias_periodo_prueba - dias_trabajados
                     )
             else:
                 record.dias_faltantes_prueba = 0
+
+    @api.depends("date_start")
+    def _compute_dias_trabajados(self):
+        for record in self:
+            if record.date_start:
+                today = datetime.today().date()
+                record.dias_trabajados = (today - record.date_start).days
+            else:
+                record.dias_trabajados = 0

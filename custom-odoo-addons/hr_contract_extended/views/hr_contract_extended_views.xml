@@ -14,6 +14,7 @@
           <field name="dias_tomados_vacaciones" optional="show"/>
           <field name="dias_pendientes_vacaciones" optional="show"/>
           <field name="contrato_mes_dia" optional="show"/>
+          <field name="dias_trabajados" optional="show"/> 
           <field name="dias_periodo_prueba" optional="show"/> 
           <field name="dias_faltantes_prueba" optional="show"/>              
           <field name="porcentaje_dias_faltantes_prueba" widget="progressbar" optional="show"/>
@@ -35,6 +36,7 @@
               <field name="dias_tomados_vacaciones"/>
               <field name="dias_pendientes_vacaciones"/>
               <field name="contrato_mes_dia"/>
+              <field name="dias_trabajados"/>
               <field name="dias_periodo_prueba"/>
               <field name="dias_faltantes_prueba"/>              
           </search>
@@ -46,16 +48,17 @@
       <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
       <field name="name">hr.contract.view.form.inherit</field>
       <field name="model">hr.contract</field>
-      <field name="arch" type="xml">
-        <xpath expr="//group[@name='top_info']/group[@name='top_info_left']/field[@name='date_end']" position="after">
-          <field name="dias_vacaciones" string="Días de vacaciones a la fecha"/>
-          <field name="dias_tomados_vacaciones" string="Días tomados de vacaciones"/>
-          <field name="dias_pendientes_vacaciones" string="Días pendientes de vacaciones"/>
-          <field name="contrato_mes_dia" string="Días de contrato"/>
-          <field name="dias_periodo_prueba" string="Días periodo de prueba"/>
-          <field name="dias_faltantes_prueba" string="Días faltantes para el periodo de prueba"/>
-          <field name="porcentaje_dias_faltantes_prueba" widget="progressbar"/>          
-          <field name="fecha_fin_prueba" string="Fecha fin de periodo de prueba"/>
+      <field name="arch" type="xml">        
+        <xpath expr="//group[@name='top_info']/group[@name='top_info_left']/field[@name='date_end']" position="after">          
+            <field name="dias_vacaciones" string="Días de vacaciones a la fecha"/>
+            <field name="dias_tomados_vacaciones" string="Días tomados de vacaciones"/>
+            <field name="dias_pendientes_vacaciones" string="Días pendientes de vacaciones"/>
+            <field name="contrato_mes_dia" string="Días de contrato"/>
+            <field name="dias_trabajados" string="Días trabajados"/>
+            <field name="dias_periodo_prueba" string="Días periodo de prueba"/>
+            <field name="dias_faltantes_prueba" string="Días faltantes para el periodo de prueba"/>
+            <field name="porcentaje_dias_faltantes_prueba" widget="progressbar"/>          
+            <field name="fecha_fin_prueba" string="Fecha fin de periodo de prueba"/>          
         </xpath>
       </field>
     </record>   
